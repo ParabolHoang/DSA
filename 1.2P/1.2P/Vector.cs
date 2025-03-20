@@ -126,12 +126,10 @@ namespace Vector
         public bool Contains(T element)
         {
             // You should replace this plug by your code.
-            for (int i = 0; i < Count; i ++)
-            {
-                if (data[i].Equals(element)) return true; 
-                
-            }
-            return false;
+            int index = IndexOf(element);
+
+            if (index != -1) return true;
+            else return false;
             //throw new NotImplementedException();
         }
 
@@ -144,12 +142,7 @@ namespace Vector
             {
                 return false;
             }
-            while (index < Count)
-            {
-                data[index] = data[index + 1];
-                index++;
-            }
-            Count--;
+            RemoveAt(index);
             return true;
 
             //throw new NotImplementedException();
@@ -159,12 +152,11 @@ namespace Vector
         {
             // You should replace this plug by your code.
             if (index >= Count || index < 0) throw new IndexOutOfRangeException();
-
-            int i = index;
-            while (i < Count)
+       
+            while (index < Count)
             {
-                data[i] = data[i + 1];
-                i++;
+                data[index] = data[index + 1];
+                index++;
             }
             Count--;
             //throw new NotImplementedException();
